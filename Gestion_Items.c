@@ -51,7 +51,7 @@ void inicializar(cliente c[], producto p[]){
 	strcpy(p[0].nombre, "Manzana"); strcpy(p[0].codigo, "MANZ01"); p[0].precio = 1500; p[0].cantidad = 100;
 	strcpy(p[1].nombre, "Leche"); strcpy(p[1].codigo, "LECH02"); p[1].precio = 2800; p[1].cantidad = 50;
 	strcpy(p[2].nombre, "Pan"); strcpy(p[2].codigo, "PAN_03"); p[2].precio = 1000; p[2].cantidad = 200;
-	strcpy(p[3].nombre, "Azúcar"); strcpy(p[3].codigo, "AZUC04"); p[3].precio = 1200; p[3].cantidad = 75;
+	strcpy(p[3].nombre, "AzÃºcar"); strcpy(p[3].codigo, "AZUC04"); p[3].precio = 1200; p[3].cantidad = 75;
 	strcpy(p[4].nombre, "Arroz"); strcpy(p[4].codigo, "ARRO05"); p[4].precio = 1800; p[4].cantidad = 120;
 }
 
@@ -81,7 +81,7 @@ void crearProducto(producto *p){
 	while (getchar() != '\n');
 	fgets(p->nombre, 50, stdin);
 	p->nombre[strcspn(p->nombre, "\n")] = '\0';
-	printf("Código: ");
+	printf("CÃ³digo: ");
 	scanf("%9s", p-> codigo);
 	printf("precio :");
 	scanf("%f", &p->precio);
@@ -98,7 +98,7 @@ void eliminarProducto(producto p[], int *totalProductos){
 	char codeP[10];
 	printf("Productos disponibles:\n");
 	mostrarDisponibilidad(p, *totalProductos);
-	printf("\nEscriba el código del producto que desea eliminar: ");
+	printf("\nEscriba el cÃ³digo del producto que desea eliminar: ");
 	scanf("%9s", codeP);
 	
 	int indiceProd = buscarProducto(p, *totalProductos, codeP);
@@ -109,7 +109,7 @@ void eliminarProducto(producto p[], int *totalProductos){
 	
 	printf("\nProducto encontrado:\n");
 	printf("Nombre: %s\n", p[indiceProd].nombre);
-	printf("Código: %s\n", p[indiceProd].codigo);
+	printf("CÃ³digo: %s\n", p[indiceProd].codigo);
 	printf("Precio: %.2f\n", p[indiceProd].precio);
 	printf("Cantidad: %d\n\n", p[indiceProd].cantidad);
 	//eliminamos el producto del array 
@@ -127,9 +127,9 @@ void registrarCliente(cliente *c){
 	while (getchar() != '\n');
 	fgets(c->nombre, 50, stdin);
 	c->nombre[strcspn(c->nombre, "\n")] = '\0';
-	printf("Cédula: ");
+	printf("CÃ©dula: ");
 	scanf("%11s", c->cedula);
-	printf("Teléfono: ");
+	printf("TelÃ©fono: ");
 	scanf("%11s", c->telefono);
 }
 
@@ -149,7 +149,7 @@ void imprimirCliente(cliente c[], int totalClientes){
 		return;
 	}
 	
-	printf("| Nº | Nombre                 | Cédula     | Teléfono   |\n");
+	printf("| NÂº | Nombre                 | CÃ©dula     | TelÃ©fono   |\n");
 	printf("+----+------------------------+------------+------------+\n");
 	
 	for(int i = 0; i < totalClientes; i++){
@@ -169,7 +169,7 @@ void imprimirClienteSinCLS(cliente c[], int totalClientes){
 	printf("\n+-------------------------------------------------------+\n");
 	printf("|                   LISTA DE CLIENTES                   |\n");
 	printf("+-------------------------------------------------------+\n");
-	printf("| Nº | Nombre                 | Cédula     | Teléfono   |\n");
+	printf("| NÂº | Nombre                 | CÃ©dula     | TelÃ©fono   |\n");
 	printf("+----+------------------------+------------+------------+\n");
 	
 	for(int i = 0; i < totalClientes; i++){
@@ -196,7 +196,7 @@ void mostrarDisponibilidad(producto p[], int totalProductos){
 		return;
 	}
 	
-	printf("| Nº | Nombre                 | Código  | Precio | Cant |\n");
+	printf("| NÂº | Nombre                 | CÃ³digo  | Precio | Cant |\n");
 	printf("+----+------------------------+---------+--------+------+\n");
 	
 	for(int i = 0; i < totalProductos; i++){
@@ -215,7 +215,7 @@ void modificarCliente(cliente c[], int totalClientes){
 	}
 	char ced[12];
 	imprimirClienteSinCLS(c, totalClientes);
-	printf("\nIngrese la cédula del cliente a modificar: ");
+	printf("\nIngrese la cÃ©dula del cliente a modificar: ");
 	scanf("%11s", ced);
 	
 	int indic = buscarClientePorCedula(c, totalClientes, ced);
@@ -224,10 +224,10 @@ void modificarCliente(cliente c[], int totalClientes){
 		return;
 	}
 	
-	printf("Cliente encontrado: Nombre actual: %s - Tel actual: %s - Cédula: %s\n", c[indic].nombre, c[indic].telefono, c[indic].cedula);
+	printf("Cliente encontrado: Nombre actual: %s - Tel actual: %s - CÃ©dula: %s\n", c[indic].nombre, c[indic].telefono, c[indic].cedula);
 	
 	int opcion;
-	printf("¿Qué desea cambiar del cliente: %s?\n1. Modificar nombre\n2. Modificar cédula\n3. Modificar teléfono\n", c[indic].nombre);
+	printf("Â¿QuÃ© desea cambiar del cliente: %s?\n1. Modificar nombre\n2. Modificar cÃ©dula\n3. Modificar telÃ©fono\n", c[indic].nombre);
 	scanf("%d", &opcion);
 	
 	switch(opcion){
@@ -236,20 +236,20 @@ void modificarCliente(cliente c[], int totalClientes){
 		while (getchar() != '\n');
 		fgets(c[indic].nombre, 50, stdin);
 		c[indic].nombre[strcspn(c[indic].nombre, "\n")] = '\0';
-		printf("Nombre actualizado corréctamente.\n");
+		printf("Nombre actualizado corrÃ©ctamente.\n");
 		break;
 	case 2:
-		printf("Nueva cédula: ");
+		printf("Nueva cÃ©dula: ");
 		scanf("%11s", c[indic].cedula);
-		printf("Cédula actualizada exitósamente.\n");
+		printf("CÃ©dula actualizada exitÃ³samente.\n");
 		break;
 	case 3:
-		printf("Nuevo teléfono: ");
+		printf("Nuevo telÃ©fono: ");
 		scanf("%11s", c[indic].telefono);
-		printf("Teléfono actualizado exitósamente.\n");
+		printf("TelÃ©fono actualizado exitÃ³samente.\n");
 		break;
 	default:
-		printf("Opción inválida");
+		printf("OpciÃ³n invÃ¡lida");
 		return;
 	}
 }
@@ -267,7 +267,7 @@ void mostrarMatrizVentas(factura *f, int numProductos, producto p[], int totalPr
 		
 		if (f->cantidadProducto[i] > 0) {
 			
-			// Buscar el producto REAL por su código
+			// Buscar el producto REAL por su cÃ³digo
 			int idx = buscarProducto(p, totalProductos, f->codigoProducto[i]);
 			
 			char nombreProd[50];
@@ -309,7 +309,7 @@ void crearFactura(factura *f, cliente c[], int *totalClientes, producto p[], int
 	
 	printf("\n========== CREAR FACTURA ==========\n");
 	imprimirClienteSinCLS(c, *totalClientes);
-	printf("Ingrese la cédula del cliente: ");
+	printf("Ingrese la cÃ©dula del cliente: ");
 	scanf("%11s", ced);
 	
 	int indiceCliente = buscarClientePorCedula(c, *totalClientes, ced);
@@ -321,7 +321,7 @@ void crearFactura(factura *f, cliente c[], int *totalClientes, producto p[], int
 		printf("1. Crear cliente\n");
 		printf("2. Continuar como anonimo\n");
 		printf("3. Cancelar factura\n");
-		printf("Seleccione una opción: ");
+		printf("Seleccione una opciÃ³n: ");
 		scanf("%d", &opcion);
 		
 	if (opcion == 1){
@@ -341,7 +341,7 @@ void crearFactura(factura *f, cliente c[], int *totalClientes, producto p[], int
 	}
 }
 	
-	//si el cliente no es anónimo
+	//si el cliente no es anÃ³nimo
 	if (indiceCliente != -1){
 		strcpy(f->cedula, c[indiceCliente].cedula);
 		printf("\nFacturando a: %s\n", c[indiceCliente].nombre);
@@ -350,7 +350,7 @@ void crearFactura(factura *f, cliente c[], int *totalClientes, producto p[], int
 	// --- REGISTRO DE PRODUCTOS ---
 	while (numProductos < MAX_PRODUCTOS_FACTURA){
 		mostrarDisponibilidad(p, totalProductos);
-		printf("\nIngrese código del producto comprado (0 para terminar): ");
+		printf("\nIngrese cÃ³digo del producto comprado (0 para terminar): ");
 		scanf("%9s", code);
 		
 		if (strcmp(code, "0") == 0){
@@ -370,7 +370,7 @@ void crearFactura(factura *f, cliente c[], int *totalClientes, producto p[], int
 		scanf("%d", &cant);
 		
 		if (cant <= 0 || cant > p[idxP].cantidad){
-			printf("Cantidad inválida o insuficiente.\n");
+			printf("Cantidad invÃ¡lida o insuficiente.\n");
 			continue;
 		}
 		
@@ -402,7 +402,7 @@ void crearFactura(factura *f, cliente c[], int *totalClientes, producto p[], int
 	//CREACION FACTURA COMO .txt
 	
 	char nombreArchivo[100];
-	sprintf(nombreArchivo, "factura%d_%s.txt", f->num_fact, c->nombre);
+	sprintf(nombreArchivo, "factura%d_%s.txt", f->num_fact, c[indiceCliente].nombre);
 	
 	fptr = fopen(nombreArchivo, "w");
 	if (fptr == NULL) {
@@ -419,12 +419,12 @@ void crearFactura(factura *f, cliente c[], int *totalClientes, producto p[], int
 		fprintf(fptr, "| Cliente: ANONIMO                              |\n");
 	} else {
 		fprintf(fptr, "| Cliente : %-34s  |\n", c[indiceCliente].nombre);
-		fprintf(fptr, "| Cédula  : %-34s  |\n", c[indiceCliente].cedula);
-		fprintf(fptr, "| Teléfono: %-34s  |\n", c[indiceCliente].telefono);
+		fprintf(fptr, "| CÃ©dula  : %-34s  |\n", c[indiceCliente].cedula);
+		fprintf(fptr, "| TelÃ©fono: %-34s  |\n", c[indiceCliente].telefono);
 	}
 	
 	fprintf(fptr, "+-----------------------------------------------+\n");
-	fprintf(fptr, "| Nº | Producto               | Cant | Precio   |\n");
+	fprintf(fptr, "| NÂº | Producto               | Cant | Precio   |\n");
 	fprintf(fptr, "+----+------------------------+------+----------+\n");
 	
 	for (int i = 0; i < numProductos; i++){
@@ -451,7 +451,7 @@ void crearFactura(factura *f, cliente c[], int *totalClientes, producto p[], int
 	}
 	fclose(fptr); // close after reading
 	
-	printf("\nFactura generada exitosamente.\n Presione ENTER para regresar al menú: ");
+	printf("\nFactura generada exitosamente.\n Presione ENTER para regresar al menÃº: ");
 	int d;
 	while ((d = getchar()) != '\n' && d != EOF) {}
 	getchar();
@@ -480,7 +480,7 @@ int main(){
 		printf("| 8. Mostrar ventas                      |\n");
 		printf("| 0. Salir                               |\n");
 		printf("+========================================+\n");
-		printf("Seleccione una opción: ");
+		printf("Seleccione una opciÃ³n: ");
 		scanf("%d", &opcion);
 		
 		switch(opcion) {
@@ -516,7 +516,7 @@ int main(){
 			printf("+-------------------------+\n");
 			break;
 		default:
-			printf("Opción inválida.\n");
+			printf("OpciÃ³n invÃ¡lida.\n");
 		}
 	} while(opcion != 0);
 	
