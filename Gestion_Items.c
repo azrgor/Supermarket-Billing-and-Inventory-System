@@ -212,6 +212,34 @@ void mostrarDisponibilidad(producto p[], int totalProductos){
 	
 }
 
+void mostrarDisponibilidadSinCLS(producto p[], int totalProductos){
+	if(totalProductos == 0){
+		printf("\nNo hay productos en el inventario\n");
+		return;
+	}
+	printf("\n+-------------------------------------------------------+\n");
+	printf("|			INVENTARIO			|\n");
+	printf("+-------------------------------------------------------+\n");
+	
+	if(totalProductos == 0){
+		printf("| No hay productos en el inventario            |\n");
+		printf("+-----------------------------------------------+\n");
+		return;
+	}
+	
+	printf("| Nº | Nombre                 | Código  | Precio | Cant |\n");
+	printf("+----+------------------------+---------+--------+------+\n");
+	
+	for(int i = 0; i < totalProductos; i++){
+		printf("| %-2d | %-22s | %-7s | %-6.2f | %-3d |\n", i+1, p[i].nombre, p[i].codigo, p[i].precio, p[i].cantidad);
+	}
+	
+	printf("+----+------------------------+---------+--------+------+\n");
+	
+	
+}
+	
+	
 void modificarCliente(cliente c[], int totalClientes){
 	if(totalClientes == 0){
 		printf("\nNo hay clientes registrados.\n");
@@ -353,7 +381,7 @@ void crearFactura(factura *f, cliente c[], int *totalClientes, producto p[], int
 	
 	// --- REGISTRO DE PRODUCTOS ---
 	while (numProductos < MAX_PRODUCTOS_FACTURA){
-		mostrarDisponibilidad(p, totalProductos);
+		mostrarDisponibilidadSinCLS(p, totalProductos);
 		printf("\nIngrese código del producto comprado (0 para terminar): ");
 		scanf("%9s", code);
 		
@@ -363,7 +391,7 @@ void crearFactura(factura *f, cliente c[], int *totalClientes, producto p[], int
 		
 		int idxP = buscarProducto(p, totalProductos, code);
 		if (idxP == -1){
-			printf("Ese producto no existe.\n");
+			printf("Ese producto no existe.\nPorfavor, ingrese un producto válido.");
 			continue;
 		}
 		
