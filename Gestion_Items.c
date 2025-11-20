@@ -6,6 +6,8 @@
 #define MAX_PRODUCTOS_FACTURA 20
 #define MAX_PRODUCTOS_INVENTARIO 200
 #define IVA 0.19f
+
+//declaramos 3 estructuras que utilizará eel código
 typedef struct{
 	char nombre[50], codigo[10];
 	float precio;
@@ -26,7 +28,7 @@ typedef struct{
 }factura;
 
 
-
+//prototipos de los subpocesos
 int buscarClientePorCedula(cliente c[], int totalClientes, char cedula[]);
 int buscarProducto(producto p[], int totalProductos, char codigo[]);
 void crearProducto(producto *p);
@@ -38,6 +40,7 @@ void modificarCliente(cliente c[], int totalClientes);
 void crearFactura(factura *f, cliente c[], int *totalClientes, producto p[], int totalProductos);
 void inicializar(cliente c[], producto p[]);
 
+//subproceso para inicializar 3 clientes y 5 productos de manera predeterminada
 void inicializar(cliente c[], producto p[]){
 	for (int i=0; i<MAX_CLIENTES;i++) strcpy(c[i].cedula, "0");
 	for (int i=0; i<MAX_PRODUCTOS_INVENTARIO;i++) strcpy(p[i].codigo, "0");
@@ -55,7 +58,7 @@ void inicializar(cliente c[], producto p[]){
 	strcpy(p[4].nombre, "Arroz"); strcpy(p[4].codigo, "ARRO05"); p[4].precio = 1800; p[4].cantidad = 120;
 }
 
-
+//subproceso que retorna el índice del cliente (en la estructura cliente) que usaremos más adelante, esto es muy útil para buscar un cliente.
 int buscarClientePorCedula(cliente c[], int totalClientes, char cedula[]){
 	for(int i = 0; i<totalClientes; i++){
 		if(strcmp(c[i].cedula, cedula) == 0){
@@ -65,6 +68,7 @@ int buscarClientePorCedula(cliente c[], int totalClientes, char cedula[]){
 	return -1;
 }
 
+	//lo mismo quee el anterior, pero esta vez para buscar un producto haciendo uso de su código, si el código es igual al que se leyó retornará el índice del mismo.
 int buscarProducto(producto p[], int totalProductos, char codigo[]){
 	for(int i=0; i<totalProductos; i++){
 		if(strcmp(p[i].codigo, codigo) == 0){
@@ -79,8 +83,8 @@ void crearProducto(producto *p){
 	printf("\nCrear Nuevo Producto\n");
 	printf("Nombre: ");
 	while (getchar() != '\n');
-	fgets(p->nombre, 50, stdin);
-	p->nombre[strcspn(p->nombre, "\n")] = '\0';
+	fgets(p->nombre, 50, stdin); //eliminamos el salto de línea
+	p->nombre[strcspn(p->nombre, "\n")] = '\0'; //usamos strcspn para que lea los espacios de un char
 	printf("Código: ");
 	scanf("%9s", p-> codigo);
 	printf("precio :");
@@ -160,6 +164,7 @@ void imprimirCliente(cliente c[], int totalClientes){
 	
 }
 
+	//este es el mismo imprimircliente pero sin limpiar la pantalla, el cual usamos en el main
 void imprimirClienteSinCLS(cliente c[], int totalClientes){
 	if(totalClientes == 0){
 		printf("\nNo hay clientes para mostrar.\n");
@@ -173,8 +178,7 @@ void imprimirClienteSinCLS(cliente c[], int totalClientes){
 	printf("+----+------------------------+------------+------------+\n");
 	
 	for(int i = 0; i < totalClientes; i++){
-		printf("| %-2d | %-22s | %-10s | %-10s |\n",
-			   i+1, c[i].nombre, c[i].cedula, c[i].telefono);
+		printf("| %-2d | %-22s | %-10s | %-10s |\n", i+1, c[i].nombre, c[i].cedula, c[i].telefono);
 	}
 	
 	printf("+----+------------------------+------------+------------+\n");
